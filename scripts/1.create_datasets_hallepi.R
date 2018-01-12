@@ -252,6 +252,6 @@ Dat_raw<-Dat
 ##Save the raw , rarefied and relative abundance datasets into a global structure
 Dat_esv<-list(RawCounts=Dat_raw,Rarefied=Dat_rar,RelativeAbundance=Dat_rab)
 filename <- paste(outfolder,"dat_hallepi_bacteria_esv.RDS",sep = "/")
-saveRDS(object = Dat_dada,file = filename)
+saveRDS(object = Dat_esv,file = filename)
 
 
