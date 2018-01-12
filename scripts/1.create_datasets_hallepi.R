@@ -202,8 +202,8 @@ Map <- Map[colnames(Tab),]
 #Handle the taxtonomic object derived from dada2
 Tax<-readRDS(file = "../rawdata/tax_final_bacteria_esv.rds")
 Tax<-as.data.frame(x = Tax)
-Tax$Taxonomy<-factor(paste0("Root;k__",Tax$Kingdom,";p__",Tax$Phylum,";c__",Tax$Class,
-                            ";o__",Tax$Order,";f__",Tax$Family,";g__",Tax$Genus,";s__",Tax$Species))
+Tax$Taxonomy<-factor(paste0("Root; k__",Tax$Kingdom,"; p__",Tax$Phylum,"; c__",Tax$Class,
+                            "; o__",Tax$Order,"; f__",Tax$Family,"; g__",Tax$Genus,"; s__",Tax$Species))
 
 Tax<-droplevels(subset(Tax,Kingdom=="Bacteria"))
 
