@@ -17,8 +17,8 @@ Dat <- read.am("../rawdata/otu_table_bacteria.txt",format = "qiime",taxonomy="ta
 contam_otus <- c(grep(pattern = "chloroplast", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE),
                  grep(pattern = "mitochondri", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE),
                  grep(pattern = "oomycete", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE),
-                 which(Dat$Tax$Taxonomy == "Root; k__Bacteria"),
-                 which(Dat$Tax$Taxonomy == "Root"))
+                 which(Dat$Tax$Taxonomy == "Root; k__Bacteria; p__; c__; o__; f__"),
+                 which(Dat$Tax$Taxonomy == "Root; k__; p__; c__; o__; f__"))
 contam_otus <- row.names(Dat$Tax)[contam_otus]
 
 # Filter Dataset
@@ -213,6 +213,27 @@ rownames(aTax)<-aTax$ID
 Tab<-Tab[which(rownames(Tab)%in%aTax$ID),]
 
 Dat <- create_dataset(Tab = Tab,Map = Map,Tax = aTax)
+#Create contaminants to remove later
+contam_otus <- c(grep(pattern = "chloroplast", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE),
+                 grep(pattern = "mitochondri", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE),
+                 grep(pattern = "oomycete", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE),
+                 grep(pattern = "Root; k__Bacteria; p__NA", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE)
+                 grep(pattern = "Root; k__NA;", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE))
+
+contam_otus <- row.names(Dat$Tax)[contam_otus]
+
+# Filter Dataset
+Dat_filter <- remove_taxons(Dat = Dat, taxons = contam_otus)
+Dat_filter <- clean(Dat = Dat_filter,verbose = TRUE)
+contam_otus <- Dat$Tax[ contam_otus, ]
+
+# Write resutls of filtering
+
+filename <- paste(outfolder,"/tax_removed_esv.txt",sep = "")
+write.table(contam_otus,file = filename, col.names = NA, quote = FALSE, sep = "\t")
+
+Dat<-Dat_filter
+
 Dat$Map$Depth <- colSums(Dat$Tab)
 
 #Add Plate label to the Plate column in the Metadata
