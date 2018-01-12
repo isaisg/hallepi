@@ -207,7 +207,7 @@ Tax$Taxonomy<-factor(paste0("Root;k__",Tax$Kingdom,";p__",Tax$Phylum,";c__",Tax$
 
 Tax<-droplevels(subset(Tax,Kingdom=="Bacteria"))
 
-aTax<-data.frame(ID=ids$Id[match(rownames(Tax),ids$Seq)],Tax$Taxonomy,Seq=ids$Seq[match(rownames(Tax),ids$Seq)])
+aTax<-data.frame(ID=ids$Id[match(rownames(Tax),ids$Seq)],Taxonomy=Tax$Taxonomy,Seq=ids$Seq[match(rownames(Tax),ids$Seq)])
 rownames(aTax)<-aTax$ID
 
 Tab<-Tab[which(rownames(Tab)%in%aTax$ID),]
