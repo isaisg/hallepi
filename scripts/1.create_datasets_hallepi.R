@@ -217,7 +217,7 @@ Dat <- create_dataset(Tab = Tab,Map = Map,Tax = aTax)
 contam_otus <- c(grep(pattern = "chloroplast", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE),
                  grep(pattern = "mitochondri", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE),
                  grep(pattern = "oomycete", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE),
-                 grep(pattern = "Root; k__Bacteria; p__NA", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE)
+                 grep(pattern = "Root; k__Bacteria; p__NA", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE),
                  grep(pattern = "Root; k__NA;", as.character(Dat$Tax$Taxonomy),ignore.case = TRUE))
 
 contam_otus <- row.names(Dat$Tax)[contam_otus]
