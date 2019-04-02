@@ -1,5 +1,4 @@
 library(ohchibi)
-setwd('/home/isai/Documents/results/hallepi/submitted/scripts/')
 
 #Create cleandata and figures folders
 dir.create(path = "../cleandata")
