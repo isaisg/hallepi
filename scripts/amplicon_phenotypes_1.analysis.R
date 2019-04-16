@@ -11,8 +11,6 @@ source('plotting_parameters_hallepi.R')
 df <- read.table("../rawdata/phenotype.csv",header = T,sep = ",",
                  quote = "",comment.char = "")
 
-#Adjust 
-df$PiperG <- (df$PiperG/1000)
 
 df$Phosphate <- df$Soil %>% 
   gsub(pattern = "^[a-c]-",replacement = "",perl = T) %>%
