@@ -11,6 +11,9 @@ source('plotting_parameters_hallepi.R')
 df <- read.table("../rawdata/phenotype.csv",header = T,sep = ",",
                  quote = "",comment.char = "")
 
+#Adjust 
+df$PiperG <- (df$PiperG/1000)
+
 df$Phosphate <- df$Soil %>% 
   gsub(pattern = "^[a-c]-",replacement = "",perl = T) %>%
   factor(levels = c("low","medium","high","low+Pi"))
@@ -71,11 +74,11 @@ m1_phf1 <- t.test(x = df_temp[1,],y = df_temp[2,],paired = TRUE)
 #Create segment df
 dfseg <- data.frame(Genotype = c("Col-0","phf1"),
                     x = c(1,1),xend = c(4,4),
-                    y = c(74,74), yend = c(74,74)
+                    y = c(0.074,0.074), yend = c(0.074,0.074)
 )
 dfsig <- data.frame(Genotype = c("Col-0","phf1"),
                     x = c(2.5,2.5),
-                    y = c(75,75), label = c("*","*")
+                    y = c(0.075,0.075), label = c("*","*")
 )
 
 
@@ -102,7 +105,7 @@ p_wt <- df %>% subset(Genotype == "Col-0") %>% droplevels %>%
   theme_hallepi_boxplot + 
   ylab(label = "Phosphate/Gram") + xlab(label = "") + 
   geom_vline(xintercept = c(1.5,2.5,3.5), size = size_vline , color = color_vline) +
-  theme(legend.position = "none") + scale_y_continuous(limits = c(0,75))
+  theme(legend.position = "none") + scale_y_continuous(limits = c(0,0.075))
 
 p_single <- df %>% subset(Genotype == "phf1") %>% droplevels %>% 
   chibi.boxplot(Map = .,x_val = "Phosphate",y_val = "PiperG",col_val = "Phosphate",
@@ -111,7 +114,7 @@ p_single <- df %>% subset(Genotype == "phf1") %>% droplevels %>%
   theme_hallepi_boxplot + 
   ylab(label = "Phosphate/Gram") + xlab(label = "") + 
   geom_vline(xintercept = c(1.5,2.5,3.5), size = size_vline , color = color_vline) +
-  theme(legend.position = "none")+ scale_y_continuous(limits = c(0,75))
+  theme(legend.position = "none")+ scale_y_continuous(limits = c(0,0.075))
 
 p_double <- df %>% subset(Genotype == "phr1/phl1") %>% droplevels %>% 
   chibi.boxplot(Map = .,x_val = "Phosphate",y_val = "PiperG",col_val = "Phosphate",
@@ -120,7 +123,7 @@ p_double <- df %>% subset(Genotype == "phr1/phl1") %>% droplevels %>%
   theme_hallepi_boxplot + 
   ylab(label = "Phosphate/Gram") + xlab(label = "") + 
   geom_vline(xintercept = c(1.5,2.5,3.5), size = size_vline , color = color_vline) +
-  theme(legend.position = "none")+ scale_y_continuous(limits = c(0,75))
+  theme(legend.position = "none")+ scale_y_continuous(limits = c(0,0.075))
 
 #Read the rnaseq figure
 p_rna <- readRDS(file = "../cleandata/fig1_zscore_193_col0.RDS")
@@ -179,7 +182,7 @@ p <- chibi.boxplot(Map = df_shoot,x_val = "Phosphate",y_val = "TotSurfArea_cm2",
                    facet_formula = "Genotype",mpalette = palette_pi_soil,alpha_point = 1,
                    size_point = size_point,size_median = size_median,median_colored_as_points = TRUE,
 ) + theme_hallepi_boxplot + 
-  ylab(label = "Phosphate/Gram") + xlab(label = "") + 
+  ylab(label = "TotSurfArea_cm2") + xlab(label = "") + 
   geom_vline(xintercept = c(1.5,2.5,3.5), size = size_vline , color = color_vline) +
   theme(legend.position = "none")
 oh.save.pdf(p = p,outname = "figure1_phenotype_shootarea.pdf",outdir = "../figures")
@@ -209,6 +212,6 @@ dev.off()
 #Write Supplemental Table 1
 df <- merged[,c(1,2,4,5,6,7,10,11,13,17,18,19)]
 df <- df[,c(1,2,4,9,3,8,5,6,7,10,11,12)]
-colnames(df) <- c("UId","Pot","Plot","Plant","Genotype","PiSoil","PiperGram","Weight","NormWeight","TotalLength_cm",
+colnames(df) <- c("UId","Pot","Plot","Plant","Genotype","PiSoil","Pi_micromolar_miligram","Weight","NormWeight","TotalLength_cm",
                   "TotalProjArea_cm2","TotalSurfArea_cm2")
 write.table(x = df,file = "../cleandata/sup_table_1.csv",append = F,quote = F,sep = ",",row.names = F,col.names = T)
