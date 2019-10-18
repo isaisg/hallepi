@@ -1,0 +1,46 @@
+Permutation test for capscale under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 10000
+
+Model: vegan::capscale(formula = t(Tab) ~ Fraction + Genotype + Phosphate + Condition(Plot), data = Map, sqrt.dist = TRUE, dfun = distfun)
+           Df SumOfSqs      F    Pr(>F)    
+Fraction    2    6.699 9.1873 9.999e-05 ***
+Genotype    2    0.975 1.3369    0.0105 *  
+Phosphate   1    0.388 1.0640    0.2713    
+Residual  136   49.586                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call:
+adonis(formula = Tab_bray ~ Fraction + Genotype + Phosphate +      Fraction:Genotype + Fraction:Phosphate + Genotype:Phosphate +      Fraction:Genotype:Phosphate + Plot, data = Dat_sub$Map, permutations = 10000) 
+
+Permutation: free
+Number of permutations: 10000
+
+Terms added sequentially (first to last)
+
+                             Df SumsOfSqs MeanSqs F.Model      R2
+Fraction                      2    10.367  5.1837 19.3481 0.16921
+Genotype                      2     0.908  0.4538  1.6939 0.01481
+Phosphate                     3     1.044  0.3480  1.2990 0.01704
+Plot                         15    11.894  0.7929  2.9596 0.19413
+Fraction:Genotype             4     1.497  0.3742  1.3966 0.02443
+Fraction:Phosphate            6     1.909  0.3182  1.1878 0.03117
+Genotype:Phosphate            6     1.476  0.2461  0.9184 0.02410
+Fraction:Genotype:Phosphate  10     2.702  0.2702  1.0086 0.04411
+Residuals                   110    29.471  0.2679         0.48101
+Total                       158    61.269                 1.00000
+                               Pr(>F)    
+Fraction                    9.999e-05 ***
+Genotype                     0.005499 ** 
+Phosphate                    0.053695 .  
+Plot                        9.999e-05 ***
+Fraction:Genotype            0.012099 *  
+Fraction:Phosphate           0.059394 .  
+Genotype:Phosphate           0.735726    
+Fraction:Genotype:Phosphate  0.437256    
+Residuals                                
+Total                                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

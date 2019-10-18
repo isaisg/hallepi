@@ -149,3 +149,18 @@ p <- ggplot(data = melted,aes(Agar,Shoot)) + geom_point(shape = 21,,size = 10) +
   geom_abline(intercept = mlm$coefficients[1],slope = mlm$coefficients[2],color = "red",size = 1) +
   geom_text(dfpval,mapping = aes(0.25,0.25,label =label),size = 5)
 oh.save.pdf(p = p,outname = "mantel_bacteria_agar_shoot_syncom.pdf",outdir = "../figures/",width = 10,height = 10)
+
+
+
+## Write the mantel dataset ###
+df1 <- melt_dist(dist = dist_agar %>% as.matrix) 
+df2 <- melt_dist(dist = dist_shoot %>% as.matrix)
+df3 <- melt_dist(dist = dist_root %>% as.matrix)
+
+melted <- data.frame(Agar = df1$dist,Root = df3$dist,Shoot = df2$dist)
+
+
+#Write this dataset
+write.table(x = melted,file = "../data_figures/data_S5EFG.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+

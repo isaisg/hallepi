@@ -7,7 +7,6 @@ library(egg)
 #Set random seed
 set.seed(130816)
 
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts')
 
 
 size_legend_text <- 45
@@ -41,7 +40,15 @@ dat_edaphic <- which(!(dat_edaphic$Parameter %in% c("P.a","P.t","Silt","Clay")))
 Tab_ed <- acast(data = dat_edaphic,Plot ~ Parameter,value.var = "Value") %>%
   scale
 
+#Tab_ed
 
+#Write dataset
+write.table(x = Tab_ed,file = "../data_figures/data_S10A.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
+#Create correlation plot
 mggcor <- chibi.ggcor(Tab = Tab_ed,size_r_display = 5)
 
 #Due to the existence of the correlation structure analyze deal with it using pca
@@ -58,6 +65,12 @@ p_pca <- ggplot(data = mdf,aes(PC,Var)) +
   ) +
   xlab(label = NULL) + ylab(label = "Variance Explained (%)") +
   scale_y_continuous(breaks = seq(0,100,5))
+
+#Write dataset
+write.table(x = mdf,file = "../data_figures/data_S10B.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
 
 #Now see the contribution of each one to the edaphic factors
 melted <- mpca$rotation %>% melt
@@ -86,6 +99,12 @@ p_cont <- ggplot(data = melted,aes(Var1,a_value)) +
 composition <- egg::ggarrange(mggcor$p,p_pca,p_cont,nrow = 1)
 oh.save.pdf(p = composition,outname = "edaphic_composition_red.pdf",outdir = "../figures/",
             width = 30,height = 10)
+
+##Write the table
+
+write.table(x = melted,file = "../data_figures/data_S10C.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
 
 
 #Merge with the dat object
@@ -133,6 +152,16 @@ mypermanova_e
 capture.output(file = "../figures/edaphic_summary_bacteria_summary.doc",
                append = T,print(mypermanova_e))
 
+#Print data used to compute permanova
+bray_tab <- Tab_bray %>% as.matrix %>%as.data.frame
+write.table(x =bray_tab,file = "../data_figures/data_S10D_dist_bacteria.csv",
+            append = F,quote = F,sep = ",",row.names = T,col.names = T)
+
+
+write.table(x =Dat_sub$Map,file = "../data_figures/data_S10D_metadata_bacteria.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
 
 p_perm <- chibi.permanova(mypermanova = mypermanova_o,
                           size_legend_text = size_legend_text,
@@ -165,6 +194,8 @@ p_perm_e <- p_perm$p +
 
 composition <- egg::ggarrange(p_perm_o,p_perm_e,nrow = 1)
 oh.save.pdf(p = composition,outname = "edaphic_permanova_root_bacteria.pdf",outdir = "../figures/")
+
+
 
 
 ### Repeat for the fungi dataset
@@ -237,3 +268,14 @@ p_perm_e <- p_perm$p +
 
 composition <- egg::ggarrange(p_perm_o,p_perm_e,nrow = 1)
 oh.save.pdf(p = composition,outname = "edaphic_permanova_fungi_bacteria.pdf",outdir = "../figures/")
+
+
+#Print data used to compute permanova
+bray_tab <- Tab_bray %>% as.matrix %>%as.data.frame
+write.table(x =bray_tab,file = "../data_figures/data_S10D_dist_fungi.csv",
+            append = F,quote = F,sep = ",",row.names = T,col.names = T)
+
+
+write.table(x =Dat_sub$Map,file = "../data_figures/data_S10D_metadata_fungi.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+

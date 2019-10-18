@@ -24,7 +24,11 @@ name<-rownames(Dat$Tab)[j]
 Mapa <-Dat$Map
 Tab<-Dat$Tab
 Mapa[, name] <- as.vector(Tab[name, ])
-confint(Mapa)
+
+
+write.table(x = Dat$Tab,file = "../data_figures/data_S7BC.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
 
 for(j in 1:length(rownames(Dat$Tab))){
   name<-rownames(Dat$Tab)[j]

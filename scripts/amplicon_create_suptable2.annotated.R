@@ -1,5 +1,4 @@
 library(ohchibi)
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts/')
 
 df <- read.table(file = "../cleandata/sup_table_2.csv",header = T,sep = ",")
 

@@ -2,7 +2,7 @@ library(ohchibi)
 library(extrafont)
 loadfonts(device = "pdf")
 
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts/')
+#Done
 legend_proportion_size <- 4
 
 #Load dataset
@@ -105,6 +105,13 @@ p <- res$p_mean +
   scale_y_continuous(c(0,0.25,0.5,0.75,1))
 oh.save.pdf(p = p, outdir = "../figures/",outname = "figure2_fungi_asvs_phylogram_fraction.pdf")
 
+write.table(x = res$p_mean$data,file = "../data_figures/data_Fig2F_census.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
+
+
 res <- chibi.phylogram(Tab = Dat_order$Tab,Map = Dat_order$Map,facet_formula = "Fraction+Genotype",
                        size_ticks_x = 0,size_strip_text = 20,size_axis_text = 25,
                        size_axis_title = 0,
@@ -138,3 +145,9 @@ p <- res$p_mean + scale_fill_manual(values = paleta) +
   theme(aspect.ratio = 20) + theme(legend.position = "none") + 
   scale_y_continuous(c(0,0.25,0.5,0.75,1))
 oh.save.pdf(p = p,outdir = "../figures/",outname = "figure2_fungi_asvs_phylogram_fraction_by_genotype_by_phosphate.pdf")
+
+
+write.table(x = res$p_mean$data,file = "../data_figures/data_S2F.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+

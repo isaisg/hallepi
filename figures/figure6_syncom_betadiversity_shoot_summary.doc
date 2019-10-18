@@ -1,0 +1,16 @@
+
+Call:
+adonis(formula = Tab_bray ~ condition, data = Dat_sub$Map, permutations = 10000,      strata = Dat_sub$Map$Rep) 
+
+Blocks:  strata 
+Permutation: free
+Number of permutations: 10000
+
+Terms added sequentially (first to last)
+
+          Df SumsOfSqs  MeanSqs F.Model      R2    Pr(>F)    
+condition  5   0.30820 0.061641  4.0894 0.39744 9.999e-05 ***
+Residuals 31   0.46728 0.015073         0.60256              
+Total     36   0.77548                  1.00000              
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

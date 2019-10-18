@@ -59,7 +59,7 @@
   p <- ggplot(data = melted_psr_end,aes(Conditions,value)) +
   facet_grid(.~Syncom) +
   geom_boxplot(outlier.shape = NA,outlier.size = NA) + 
-  geom_sina(aes(color = Significance),size = 7,alpha = 0.4,fill = NA) +
+  geom_sina(aes(color = Significance,group = Conditions),size = 7,alpha = 0.4,fill = NA) +
   #geom_point(position = position_jitterdodge(dodge.width = 0.9, jitter.width = 0.1),
   #           aes(color = Significance),shape = 21,size = 7) +
   theme_ohchibi() +
@@ -68,6 +68,11 @@
                           axis.title.x = element_blank()) +
   scale_size(range=c(3,6))  +
   scale_color_manual(values = c("black","#E55000"))
+  
+  
+  write.table(x = melted_psr,file = "../data_figures/data_S5B.csv",
+              append = F,quote = F,sep = ",",row.names = F,col.names = T)
+  
   
   
   

@@ -1,6 +1,6 @@
 library(ohchibi)
+#Done
 
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts/')
 set.seed(130816)
 pval_thres <- 0.1
 res <- read.table(file = "../cleandata/df_dds_res_amplicon_fungi_asvs_fraction_asvlevel.tsv",
@@ -110,3 +110,9 @@ p <- ggplot(data = df_all,mapping = aes(Mode,y = Freq,fill = Order)) +
     strip.background = element_blank()) +
   scale_y_continuous(breaks = c(0,20,40,60,80,100,120,140))
 oh.save.pdf(p = p, outdir = "../figures/",outname = "figure2_fungi_otus_phylogram_fraction_enrichments_depletions_counts.pdf")
+
+
+#Write this dataset
+write.table(x = df_all,file = "../data_figures/data_Fig2F_enrichment.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+

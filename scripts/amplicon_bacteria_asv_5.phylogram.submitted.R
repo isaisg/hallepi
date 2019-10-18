@@ -3,7 +3,7 @@ library(palettesPM)
 library(extrafont)
 loadfonts(device = "pdf")
 
-
+#Done
 source('plotting_parameters_hallepi.R')
 
 #Load dataset
@@ -47,6 +47,14 @@ p <- res$p_mean + scale_fill_phyla() +
   theme(aspect.ratio = 10) + theme(legend.position = "none")
 oh.save.pdf(p = p, outdir = "../figures/",outname = "figure2_bacteria_asv_phylogram_fraction.pdf")
 
+#Write this dataset
+write.table(x = res$p_mean$data,file = "../data_figures/data_Fig2C_census.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+ 
+
+
 res <- chibi.phylogram(Tab = Dat_phyla$Tab,Map = Dat_phyla$Map,facet_formula = "Fraction+Genotype",
                        size_ticks_x = 0,size_strip_text = 22,size_axis_text = 25,
                        ,size_axis_title = 0,
@@ -70,6 +78,7 @@ oh.save.pdf(p = p,outdir = "../figures/",outname = "figure2_bacteria_asv_phylogr
 
 
 
+
 res <- chibi.phylogram(Tab = Dat_phyla$Tab,Map = Dat_phyla$Map,facet_formula = "Fraction+Genotype+Phosphate",
                        size_ticks_x = 0,size_strip_text = 8,size_axis_text = 25,
                        ,size_axis_title = 0,
@@ -78,5 +87,9 @@ res <- chibi.phylogram(Tab = Dat_phyla$Tab,Map = Dat_phyla$Map,facet_formula = "
 p <- res$p_mean +  scale_fill_phyla()+
   theme(aspect.ratio = 20) + theme(legend.position = "none")
 oh.save.pdf(p = p,outdir = "../figures/",outname = "figure2_bacteria_asv_phylogram_fraction_by_genotype_by_phosphate.pdf")
+
+write.table(x = res$p_mean$data,file = "../data_figures/data_S2E.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
 
 

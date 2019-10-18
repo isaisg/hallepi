@@ -11,7 +11,6 @@ size_axis_title <- 35
 size_legend_title <- 55
 legend_proportion_size <- 4
 
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts')
 
 Dat_ori <- readRDS("../cleandata/dat_hallepi_syncom_piDO_useq97.RDS")
 
@@ -58,6 +57,10 @@ p <- df_sub %>% subset(RA < 0.1) %>%
         )   + 
   ylab(label = "Relative abundance in root")
 oh.save.pdf(p = p,outname = "pi_burkholderia_mutants.pdf",outdir = "../figures/")
+
+#Save dataset
+write.table(x = df_sub,file = "../data_figures/data_Fig6C.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
 
 
 ## Generate model to confirm trends observed

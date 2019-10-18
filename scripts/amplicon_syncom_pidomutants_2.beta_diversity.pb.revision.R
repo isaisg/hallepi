@@ -9,7 +9,6 @@ size_axis_title <- 35
 size_legend_title <- 55
 legend_proportion_size <- 4
 
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts')
 
 Dat_ori <- readRDS("../cleandata/dat_hallepi_syncom_piDO_useq97.RDS")
 Dat_rar <- Dat_ori$RelativeAbundance
@@ -97,6 +96,12 @@ df_pv <- mypermanova$aov.tab %>% as.data.frame
 dfpval <- data.frame(label = paste0("R2 = ",round(df_pv$R2[1],3),
                                     "\n p-value = ",base::format.pval(pv = df_pv$`Pr(>F)`[1],digits = 2))
 )
+
+#Write data fore figure S8
+write.table(x = mcap$Map_cap,file = "../data_figures/data_S9AB.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
 
 p_geno <- chibi.cap(list_ohpco = mcap,col_val = "Genotype",
                     mypch = 21,size = 20,alpha=1,comp_a = "CAP1",comp_b = "CAP2",

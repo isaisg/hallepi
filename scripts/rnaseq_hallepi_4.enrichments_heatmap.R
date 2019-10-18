@@ -9,6 +9,7 @@ library(pheatmap)
 #Set random seed
 set.seed(130816)
 
+#Done
 
 source('plotting_parameters_hallepi.R')
 
@@ -118,6 +119,14 @@ p <- ggplot(data = merged_obs,aes(Phosphate,Gene, fill = value)) +
 oh.save.pdf(p = p,outname = "figure1_heatmap_phosphate_legend.pdf",
             height = 20,width = 10,outdir = "../figures/")  
 
+
+#Write cleandata
+write.table(x = merged_obs,file = "../data_figures/data_Fig1B.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
+
 p <- ggplot(data = merged_obs,aes(Phosphate,Gene, fill = value)) +
   geom_tile() + facet_grid(Cluster ~ Genotype,space = "free",scales = "free") +
   scale_fill_paletteer_c(package = "pals",
@@ -159,6 +168,7 @@ composition <- egg::ggarrange(p,p_psr,nrow = 1,widths = c(1,0.05))
 oh.save.pdf(composition,outname = "figure1_heatmap_phosphate.pdf",
             height = 20,width = 10,outdir = "../figures/") 
 #Get the identity of the genes
+
 df_reg %>% subset(Regulon == "Yes") %>% droplevels %>%
   write.table(x = .,file = "../cleandata/df_7genes_rnaseq.tsv",append = F,quote = F,sep = "\t",row.names = F,col.names = T)
 
@@ -181,6 +191,12 @@ cg <- compareCluster(geneCluster=lista,
                      pAdjustMethod = "BH",
                      pvalueCutoff  = 0.05,
                      qvalueCutoff  = 0.1)
+
+
+df_cg <- cg %>% as.data.frame
+write.table(x = df_cg,file = "../data_figures/data_Fig1D.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
 
 
 p <- dotplot(cg,showCategory = 20,font.size = 15) +

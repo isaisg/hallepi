@@ -5,7 +5,6 @@ set.seed(130816)
 
 
 
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts')
 
 #Read both alpha diversities
 df_bac <- read.table(file = "../cleandata/sup_table_3_bacteria.csv",header = T,

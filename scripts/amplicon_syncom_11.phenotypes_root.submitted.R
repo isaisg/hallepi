@@ -69,3 +69,10 @@ oh.save.pdf(p = p_total,outname = "syncom_phenotypes_totalroot.pdf",
 oh.save.pdf(p = p_main,outname = "syncom_phenotypes_mainroot.pdf",
             outdir = "../figures")
 
+
+
+#Write this dataset
+write.table(x = df,file = "../data_figures/data_Fig5A_S5A.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+

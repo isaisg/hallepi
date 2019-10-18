@@ -5,6 +5,7 @@ library(corrplot)
 library(egg)
 library(emmeans)
 
+#Done
 
 source('plotting_parameters_hallepi.R')
 
@@ -79,6 +80,11 @@ dfsig <- data.frame(Genotype = c("Col-0","phf1"),
                     y = c(0.075,0.075), label = c("*","*")
 )
 
+#Write dataset  for Fig1.A and S1C
+write.table(x = df,file = "../data_figures/data_Fig1A_S1C.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
 
 #Create figure
 p <- chibi.boxplot(Map = df,x_val = "Phosphate",y_val = "PiperG",col_val = "Phosphate",
@@ -86,7 +92,6 @@ p <- chibi.boxplot(Map = df,x_val = "Phosphate",y_val = "PiperG",col_val = "Phos
                    size_point = size_point,size_median = size_median,median_colored_as_points = TRUE) +
   theme_hallepi_boxplot + 
   ylab(label = "Phosphate/Gram") + xlab(label = "") + 
-  geom_vline(xintercept = c(1.5,2.5,3.5), size = size_vline , color = color_vline) +
   theme(legend.position = "none")
 p <- p +geom_segment(aes(x = x, y = y, xend = xend, yend = yend), 
                      data = dfseg,size = 2,color = median_color) +
@@ -171,6 +176,15 @@ df_shoot$Phosphate <- df_shoot$Phosphate %>% as.character %>%
 df_shoot$Plot <- df_shoot$plot %>% paste0("Plot",.) %>% factor
 
 
+#Write this data file
+write.table(x = df_shoot,file = "../data_figures/data_S1B.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
+
+
+
 df_shoot %>% aov(formula = TotSurfArea_cm2~Genotype+Phosphate + Genotype:Phosphate,data = .) %>%
   summary
 lala <- aov(formula = TotSurfArea_cm2 ~ Genotype +Phosphate +Genotype:Phosphate,data = df_shoot) %>%
@@ -193,6 +207,13 @@ df_shoot$Uid <- paste(df_shoot$Genotype,df_shoot$Phosphate,df_shoot$Plot,df_shoo
 merged <- merge(df,df_shoot, by = "Uid") 
 Tab <- merged[,c(6,10,17,18,19)] %>% as.matrix
 rownames(Tab) <- merged$Uid
+
+#Write cleandata figure
+write.table(x = df_shoot,file = "../data_figures/data_S1A.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
 Tab_cor <- cor(Tab)
 
 col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))

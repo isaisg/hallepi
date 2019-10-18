@@ -1,0 +1,31 @@
+
+Call:
+lm(formula = df_cor$Regulon ~ df_cor$ZPiperG)
+
+Residuals:
+        1         2         3         4 
+-0.019291 -0.006419  0.071601 -0.045891 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)  
+(Intercept)    -0.02295    0.03092  -0.742   0.5352  
+df_cor$ZPiperG -0.43061    0.07457  -5.775   0.0287 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.06183 on 2 degrees of freedom
+Multiple R-squared:  0.9434,	Adjusted R-squared:  0.9151 
+F-statistic: 33.35 on 1 and 2 DF,  p-value: 0.0287
+
+
+	Pearson's product-moment correlation
+
+data:  df_cor$Regulon and df_cor$ZPiperG
+t = -5.7749, df = 2, p-value = 0.0287
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9994224 -0.1535642
+sample estimates:
+       cor 
+-0.9712987 
+

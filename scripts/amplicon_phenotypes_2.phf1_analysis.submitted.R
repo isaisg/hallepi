@@ -39,7 +39,12 @@ p <- chibi.boxplot(Map = df,x_val = "Genotype",y_val = "PiperG",col_val = "Genot
               size_point = 20,size_median = size_median,median_colored_as_points = TRUE) +
   theme_hallepi_boxplot + 
   ylab(label = "Phosphate/Gram") + xlab(label = "") + 
-  geom_vline(xintercept = c(1.5,2.5,3.5), size = size_vline , color = color_vline) +
-  theme(legend.position = "none")+ scale_y_continuous(limits = c(0,75))
+  theme(legend.position = "none")+ scale_y_continuous(limits = c(0,0.075))
 
 oh.save.pdf(p = p,outname = "supfigure1_phf1.pdf",outdir =  "../figures/",height = 20,width = 20)
+
+
+#Write the dataset used to construct the figure
+write.table(x = df,file = "../data_figures/data_S1D.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+

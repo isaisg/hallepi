@@ -21,6 +21,11 @@ res$Significance <- res$Significance %>% factor
 res$log2FoldChange[which(res$log2FoldChange>5)] <- 5
 res$log2FoldChange[which(res$log2FoldChange< -5)] <- -5
 
+write.table(x = res,file = "../data_figures/data_Fig5D.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
 #Read phylogenetic tree
 tree <- read.tree(file = "../cleandata/201_uncisolates_47markers.rooted.newick")
 meta <- read.table(file = "../rawdata/metadata_97useq_unc_genomes_useq_freezer_mothur_taxonoid_genome_name.tsv",

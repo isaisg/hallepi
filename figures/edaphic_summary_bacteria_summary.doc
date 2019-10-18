@@ -1,0 +1,56 @@
+
+Call:
+adonis(formula = Tab_bray ~ Genotype + Phosphate + Genotype:Phosphate +      Plot, data = Dat_sub$Map, permutations = 10000) 
+
+Permutation: free
+Number of permutations: 10000
+
+Terms added sequentially (first to last)
+
+                   Df SumsOfSqs MeanSqs F.Model      R2    Pr(>F)
+Genotype            2    1.0282 0.51412  2.3503 0.04558    0.0024
+Phosphate           3    0.9467 0.31556  1.4426 0.04197    0.0479
+Plot               15    9.8092 0.65395  2.9895 0.43484 9.999e-05
+Genotype:Phosphate  6    1.3680 0.22801  1.0423 0.06064    0.3516
+Residuals          43    9.4062 0.21875         0.41697          
+Total              69   22.5584                 1.00000          
+                      
+Genotype           ** 
+Phosphate          *  
+Plot               ***
+Genotype:Phosphate    
+Residuals             
+Total                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call:
+adonis(formula = Tab_bray ~ Genotype + Phosphate + Genotype:Phosphate +      PC1 + PC2 + PC3 + Plot, data = Dat_sub$Map, permutations = 10000) 
+
+Permutation: free
+Number of permutations: 10000
+
+Terms added sequentially (first to last)
+
+                   Df SumsOfSqs MeanSqs F.Model      R2    Pr(>F)
+Genotype            2    1.0282  0.5141  2.3503 0.04558    0.0026
+Phosphate           3    0.9467  0.3156  1.4426 0.04197    0.0474
+PC1                 1    4.8782  4.8782 22.3006 0.21625 9.999e-05
+PC2                 1    0.6898  0.6898  3.1532 0.03058    0.0015
+PC3                 1    0.3932  0.3932  1.7973 0.01743    0.0448
+Plot               12    3.8481  0.3207  1.4659 0.17058    0.0015
+Genotype:Phosphate  6    1.3680  0.2280  1.0423 0.06064    0.3472
+Residuals          43    9.4062  0.2187         0.41697          
+Total              69   22.5584                 1.00000          
+                      
+Genotype           ** 
+Phosphate          *  
+PC1                ***
+PC2                ** 
+PC3                *  
+Plot               ** 
+Genotype:Phosphate    
+Residuals             
+Total                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

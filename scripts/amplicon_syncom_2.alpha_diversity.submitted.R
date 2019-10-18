@@ -183,3 +183,8 @@ p <- ggplot(data = Res_em,mapping = aes(condition,emmean,fill = condition)) +
   geom_text(data = Res_pval,mapping = aes(x = condition,y = 2.95,label = Letters),inherit.aes = F)
 oh.save.pdf(p = p,outname = "figure6_syncom_alphadiversity_pigradient.pdf",outdir = "../figures")
 
+
+#Write this dataset
+write.table(x = Dat_rar$Map,file = "../data_figures/data_Fig5B_Fig5E_census.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+

@@ -14,7 +14,6 @@ size_axis_title <- 35
 size_legend_title <- 55
 legend_proportion_size <- 4
 
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts/')
 
 
 

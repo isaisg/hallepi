@@ -7,6 +7,7 @@ library(egg)
 library(harrietr)
 #Set random seed
 set.seed(130816)
+#Done
 
 
 size_legend_text <- 45
@@ -185,8 +186,6 @@ oh.save.pdf(p = p,outname = "mantel_bacteria_soil_root_small.pdf",outdir = "../f
 
 
 
-
-
 m_shoot_soil <- mantel(xdis = dist_shoot,ydis = dist_soil,
                        permutations = 10000)
 capture.output(file = "../figures/supfigure2_mantel_shoot_soil_small.doc",
@@ -208,3 +207,17 @@ p <- ggplot(data = melted,aes(Soil,Shoot)) + geom_point(shape = 21,,size = 8) +
   geom_abline(intercept = mlm$coefficients[1],slope = mlm$coefficients[2],color = "red",size = 1) +
   geom_text(dfpval,mapping = aes(0.8,0.6,label =label),size = 5)
 oh.save.pdf(p = p,outname = "mantel_bacteria_soil_shoot_small.pdf",outdir = "../figures/",width = 10,height = 10)
+
+
+## Write the mantel dataset ###
+df1 <- melt_dist(dist = dist_soil %>% as.matrix) 
+df2 <- melt_dist(dist = dist_shoot %>% as.matrix)
+df3 <- melt_dist(dist = dist_root %>% as.matrix)
+
+melted <- data.frame(Soil = df1$dist,Root = df3$dist,Shoot = df2$dist)
+
+
+#Write this dataset
+write.table(x = melted,file = "../data_figures/data_S3ABC.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+

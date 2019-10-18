@@ -14,7 +14,6 @@ size_axis_title <- 35
 size_legend_title <- 55
 legend_proportion_size <- 4
 
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts/')
 
 
 
@@ -211,6 +210,24 @@ p <- ggplot(data = melted,aes(Soil,Shoot)) + geom_point(shape = 21,,size = 8) +
   geom_abline(intercept = mlm$coefficients[1],slope = mlm$coefficients[2],color = "red",size = 1) +
   geom_text(dfpval,mapping = aes(0.65,0.4,label =label),size = 5)
 oh.save.pdf(p = p,outname = "mantel_fungi_soil_shoot_small.pdf",outdir = "../figures/",width = 10,height = 10)
+
+
+## Write the mantel dataset ###
+df1 <- melt_dist(dist = dist_soil %>% as.matrix) 
+df2 <- melt_dist(dist = dist_shoot %>% as.matrix)
+df3 <- melt_dist(dist = dist_root %>% as.matrix)
+
+melted <- data.frame(Soil = df1$dist,Root = df3$dist,Shoot = df2$dist)
+
+
+
+#Write this dataset
+write.table(x = melted,file = "../data_figures/data_S3DEF.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
+
 
 
 ### Check the cloud between root and soil

@@ -5,7 +5,6 @@ library(palettesPM)
 library(scales)
 library(UpSetR)
 
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts/')
 set.seed(seed = 130816)
 
 #Load dataset
@@ -19,6 +18,18 @@ pval_thres <- 0.1
 res_inside_col0 <- results(object = dds,contrast = c("group","Col_0_low_Pi","Col_0_low"))
 res_inside_phf1 <- results(object = dds,contrast = c("group","phf1_low_Pi","phf1_low"))
 res_inside_phr1phl1 <- results(object = dds,contrast = c("group","phr1_phl1_low_Pi","phr1_phl1_low"))
+
+#Rbidn results for dataset object
+res_inside_col0$Genotype <- "Col-0"
+res_inside_phf1$Genotype <- "phf1"
+res_inside_phr1phl1$Genotype <- "phr1/phl1"
+towrite <- rbind(res_inside_col0,res_inside_phf1,res_inside_phr1phl1) %>% as.data.frame
+
+write.table(x = towrite,file = "../data_figures/data_Fig3D_enrichedinlow.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
 
 wt <- res_inside_col0 %>% subset(padj < pval_thres & log2FoldChange < 0) %>% rownames
 single <- res_inside_phf1 %>% subset(padj < pval_thres & log2FoldChange < 0) %>% rownames
@@ -79,6 +90,18 @@ pval_thres <- 0.1
 res_inside_col0 <- results(object = dds,contrast = c("group","Col_0_low_Pi","Col_0_low"))
 res_inside_phf1 <- results(object = dds,contrast = c("group","phf1_low_Pi","phf1_low"))
 res_inside_phr1phl1 <- results(object = dds,contrast = c("group","phr1_phl1_low_Pi","phr1_phl1_low"))
+
+#Rbidn results for dataset object
+res_inside_col0$Genotype <- "Col-0"
+res_inside_phf1$Genotype <- "phf1"
+res_inside_phr1phl1$Genotype <- "phr1/phl1"
+towrite <- rbind(res_inside_col0,res_inside_phf1,res_inside_phr1phl1) %>% as.data.frame
+
+write.table(x = towrite,file = "../data_figures/data_Fig3D_enrichedinlowplusP.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
 
 wt <- res_inside_col0 %>% subset(padj < pval_thres & log2FoldChange > 0) %>% rownames
 single <- res_inside_phf1 %>% subset(padj < pval_thres & log2FoldChange > 0) %>% rownames

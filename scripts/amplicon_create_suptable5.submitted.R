@@ -1,5 +1,4 @@
 library(ohchibi)
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts/')
 
 res <- read.table(file = "../cleandata/df_dds_res_amplicon_fungi_asvs_fraction_asvlevel.tsv",
                   header = T,sep = "\t",quote = "",comment.char = "")

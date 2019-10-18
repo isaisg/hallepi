@@ -5,6 +5,7 @@ library(paletteer)
 #Set random seed
 set.seed(130816)
 
+#Done
 
 source('plotting_parameters_hallepi.R')
 
@@ -47,6 +48,12 @@ colnames(melted_psr)[2] <- "group"
 melted_psr <- melted_vsd[,c(6:8,10)] %>% unique %>% merge(melted_psr, . , by = "group",all.x = TRUE)
 
 paleta <- palette_pi_soil[c(1,4)]
+
+#Write dataset
+write.table(x = melted_psr,file = "../data_figures/data_S1E.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
 
 p <- chibi.boxplot(Map = melted_psr,style = "mix",
                    facet_formula = "Genotype",x_val = "Phosphate",y_val = "value",

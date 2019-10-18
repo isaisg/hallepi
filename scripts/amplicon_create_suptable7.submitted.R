@@ -2,7 +2,6 @@ library(ohchibi)
 library(DESeq2)
 
 
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts/')
 set.seed(seed = 130816)
 
 #Load dataset

@@ -9,9 +9,8 @@ library(egg)
 #Set random seed
 set.seed(130816)
 
+#Done
 
-
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts/')
 source('plotting_parameters_hallepi.R')
 
 
@@ -116,6 +115,12 @@ p <- chibi.boxplot(Map = Dat_sub$Map,facet_formula = "Fraction",x_val = "Genotyp
   scale_y_continuous(breaks = c(0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5))
 
 oh.save.pdf(p = p,outname = "supfigure2_fungi_asv_alphadiversity_extended.pdf",outdir = "../figures")
+
+
+
+write.table(x = Dat_sub$Map,file = "../data_figures/data_Fig2D_S2B.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
 
 rm(list=ls())
 dev.off()

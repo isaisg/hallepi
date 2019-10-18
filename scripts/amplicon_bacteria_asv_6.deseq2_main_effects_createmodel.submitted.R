@@ -46,7 +46,7 @@ ggplot(df_merged,aes(PresentIn,Average)) + geom_point() +
   scale_y_continuous(limits = c(0,500))
 
 
-#Write the chosen esvs
+#Write the chosen asvs
 Dat_raw$Tax$ID %>% as.character  %>% 
   write(x = .,file = "../cleandata/3874_asvs.txt")
 

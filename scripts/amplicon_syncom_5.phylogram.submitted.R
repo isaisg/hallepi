@@ -42,3 +42,11 @@ p <- res$p_mean + scale_fill_phyla() +
   theme(aspect.ratio = 10) + theme(legend.position = "none")
 oh.save.pdf(p = p, outdir = "../figures/",outname = "figure4_syncom_phylogram_fraction.pdf")
 
+
+
+#Write this dataset
+write.table(x = res$p_mean$data,file = "../data_figures/data_Fig4B.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+

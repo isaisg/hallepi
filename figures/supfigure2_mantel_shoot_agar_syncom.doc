@@ -1,0 +1,15 @@
+
+Mantel statistic based on Pearson's product-moment correlation 
+
+Call:
+mantel(xdis = dist_shoot, ydis = dist_agar, permutations = 10000) 
+
+Mantel statistic r: 0.9287 
+      Significance: 0.0013889 
+
+Upper quantiles of permutations (null model):
+  90%   95% 97.5%   99% 
+0.544 0.621 0.847 0.905 
+Permutation: free
+Number of permutations: 719
+

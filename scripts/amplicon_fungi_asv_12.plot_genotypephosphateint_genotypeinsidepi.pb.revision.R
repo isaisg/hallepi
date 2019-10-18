@@ -5,7 +5,6 @@ library(palettesPM)
 library(scales)
 library(UpSetR)
 
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts/')
 set.seed(seed = 130816)
 
 #Load dataset

@@ -13,6 +13,7 @@ size_axis_title <- 35
 size_legend_title <- 55
 legend_proportion_size <- 4
 
+#Done
 
 source('plotting_parameters_hallepi.R')
 
@@ -108,6 +109,17 @@ mypermanova
 capture.output(file = "../figures/figure2_bacteria_asvs_samples_soilrootshoot_summary.doc",
                append = T,print(mypermanova))
 
+#Print data used to compute permanova
+bray_tab <- Tab_bray %>% as.matrix %>%as.data.frame
+write.table(x =bray_tab,file = "../data_figures/data_S2C_dist.csv",
+            append = F,quote = F,sep = ",",row.names = T,col.names = T)
+
+
+write.table(x =Dat_sub$Map,file = "../data_figures/data_S2C_metadata.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
 #Build permanova
 p_perm <- chibi.permanova(mypermanova = mypermanova,
                           size_legend_text = size_legend_text,
@@ -121,6 +133,11 @@ p_perm <- p_perm$p +
   scale_fill_manual(values = palette_variance) +
   xlab(label = "Term Model")
 #oh.save.pdf(p = p_perm,outname = "figure2_bacteria_asvs_beta_diversity_maineffects_chibipermanova.pdf",outdir = "../figures/")
+
+
+##Write the dataset
+write.table(x = mycap$Map_cap,file = "../data_figures/data_Fig2B.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
 
 #Plot cap 
 p <- chibi.cap(list_ohpco = mycap,col_val = "Fraction",comp_a = "CAP1",comp_b = "CAP2",
@@ -199,9 +216,6 @@ pco_genotype<- chibi.pco(list_ohpco = mpco,col_val = "Genotype",
         legend.position = "none"
   )
 
-egg::ggarrange(pco_frac,pco_plot,
-               pco_phosphate,pco_genotype,nrow = 2,ncol = 2)
-
 
 
 #Control for the plot effect
@@ -225,6 +239,18 @@ mypermanova
 capture.output(file = "../figures/figure3_bacteria_asvs_samples_root_summary.doc",
                append = T,print(mypermanova))
 
+#Print data used to compute permanova
+bray_tab <- Tab_bray %>% as.matrix %>%as.data.frame
+write.table(x =bray_tab,file = "../data_figures/data_S4A_dist.csv",
+            append = F,quote = F,sep = ",",row.names = T,col.names = T)
+
+
+write.table(x =Dat_sub$Map,file = "../data_figures/data_S4A_metadata.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
+
 p_perm <- chibi.permanova(mypermanova = mypermanova,
                           size_legend_text = size_legend_text,
                           size_axis_title = 15,
@@ -236,6 +262,12 @@ p_perm <- chibi.permanova(mypermanova = mypermanova,
 p_perm <- p_perm$p + 
   scale_fill_manual(values = palette_variance) +
   xlab(label = "Term Model")
+
+#Write the root dataset
+write.table(x = mycap$Map_cap,file = "../data_figures/data_Fig3A.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
 
 #Plot cap 
 p <- chibi.cap(list_ohpco = mycap,col_val = "Phosphate",comp_a = "CAP1",comp_b = "CAP2",
@@ -270,6 +302,8 @@ p_phos <- chibi.cap(list_ohpco = mycap,col_val = "Phosphate",comp_a = "CAP1",com
         legend.position = "none"
         
   )
+
+
 
 composition <- egg::ggarrange(p_geno,p_phos,nrow = 1)
 oh.save.pdf(composition,outname = "figure_3_legendcaps_twopanels_root.pdf",
@@ -484,6 +518,10 @@ composition <- egg::ggarrange(p_geno,p_phos,nrow = 1)
 oh.save.pdf(composition,outname = "figure_3_legendcaps_twopanels_soil.pdf",outdir = "../figures",
             width = 20,height = 10)
 
+write.table(x = mycap$Map_cap,file = "../data_figures/data_S4E.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
 
 
 #oh.save.pdf(p = p,outname = "figure3_bacteria_asvs_beta_diversity_onlyroot_cap1_cap2.pdf",outdir = "../figures/")
@@ -571,6 +609,11 @@ composition <- egg::ggarrange(p_geno,p_phos,nrow = 1)
 oh.save.pdf(composition,
             outname = "figure_3_legendcaps_twopanels_shoot.pdf",
             outdir = "../figures",width = 20,height = 10)
+
+
+write.table(x = mycap$Map_cap,file = "../data_figures/data_S4C.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
 
 
 

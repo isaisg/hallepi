@@ -1,0 +1,48 @@
+
+Call:
+adonis(formula = Tab_bray ~ typebyTissue + condition + typebyTissue:condition,      data = Dat_rar$Map, permutations = 10000, strata = Dat_rar$Map$Rep) 
+
+Blocks:  strata 
+Permutation: free
+Number of permutations: 10000
+
+Terms added sequentially (first to last)
+
+                        Df SumsOfSqs MeanSqs F.Model      R2
+typebyTissue             4    5.1119 1.27797  44.864 0.49531
+condition                5    0.7945 0.15890   5.578 0.07698
+typebyTissue:condition  15    0.6256 0.04171   1.464 0.06062
+Residuals              133    3.7886 0.02849         0.36709
+Total                  157   10.3206                 1.00000
+                          Pr(>F)    
+typebyTissue           9.999e-05 ***
+condition              9.999e-05 ***
+typebyTissue:condition    0.0032 ** 
+Residuals                           
+Total                               
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call:
+adonis(formula = Tab_bray ~ typebyTissue + condition + typebyTissue:condition,      data = Dat_rar$Map, permutations = 10000, strata = Dat_rar$Map$Rep) 
+
+Blocks:  strata 
+Permutation: free
+Number of permutations: 10000
+
+Terms added sequentially (first to last)
+
+                        Df SumsOfSqs MeanSqs F.Model      R2
+typebyTissue             3    3.5223 1.17410  41.384 0.41082
+condition                5    0.7945 0.15890   5.601 0.09267
+typebyTissue:condition  15    0.6256 0.04171   1.470 0.07297
+Residuals              128    3.6314 0.02837         0.42355
+Total                  151    8.5738                 1.00000
+                          Pr(>F)    
+typebyTissue           9.999e-05 ***
+condition              9.999e-05 ***
+typebyTissue:condition    0.0033 ** 
+Residuals                           
+Total                               
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

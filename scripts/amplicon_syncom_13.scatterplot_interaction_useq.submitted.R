@@ -57,3 +57,9 @@ p <- ggplot(data = merged,aes(log2FoldChange,padjtrans)) +
   scale_color_manual(values = c("black","red"))
 oh.save.pdf(p =p ,outname = "scatter_plot_interaction_syncom.pdf",outdir = "../figures/",
             height = 20,width = 15)
+
+
+write.table(x = merged,file = "../data_figures/data_S7A.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+

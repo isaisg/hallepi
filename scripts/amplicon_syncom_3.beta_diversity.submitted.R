@@ -29,6 +29,8 @@ pal_frac <- match(Dat_rar$Map$typebyTissue %>% levels,names(pal_frac)) %>%
 
 #Define Bray Curtis as the dissimilarity
 distfun <- function(x,method) vegan::vegdist(x = x, method = "bray")
+
+
 mpco <- oh.pco(Tab = t(Dat_rar$Tab),Map = Dat_rar$Map,ndim = 3,eig = T,
                distfun = distfun,id_var = "ID_Matrix")
 
@@ -45,6 +47,8 @@ mypermanova <- adonis(Tab_bray ~  typebyTissue + condition + typebyTissue:condit
 
 capture.output(file = "../figures/figure5_syncom_betadiversity_summary.doc",
                append = F,print(mypermanova))
+
+
 
 p_perm <- chibi.permanova(mypermanova = mypermanova,  
                           size_legend_text = size_legend_text,size_axis_title = 15,
@@ -77,6 +81,17 @@ mypermanova <- adonis(Tab_bray ~  typebyTissue + condition + typebyTissue:condit
 
 capture.output(file = "../figures/figure5_syncom_betadiversity_summary.doc",
                append = T,print(mypermanova))
+
+#Print data used to compute permanova
+bray_tab <- Tab_bray %>% as.matrix %>%as.data.frame
+write.table(x =bray_tab,file = "../data_figures/data_S5D_dist.csv",
+            append = F,quote = F,sep = ",",row.names = T,col.names = T)
+
+
+write.table(x =Dat_rar$Map,file = "../data_figures/data_S5D_metadata.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
 p_perm <- chibi.permanova(mypermanova = mypermanova,
                           size_legend_text = size_legend_text,size_axis_title = 15,
                           size_axis_text = 30,size_title_text = size_legend_text,legend_proportion_size = 4) 
@@ -108,6 +123,13 @@ mcap <- oh.cap(Tab = Dat_rar$Tab,Map = Dat_rar$Map,formula = "typebyTissue + con
                distfun = distfun,perms = 10000,sqrt = T)
 
 
+
+#Write the  dataset
+write.table(x = mcap$Map_cap,file = "../data_figures/data_Fig5C.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
 p <- chibi.cap(list_ohpco = mcap,col_val = "typebyTissue",
                mypch = 21,size = 20,alpha=1,comp_a = "CAP1",comp_b = "CAP2",
                size_legend_text = size_legend_text,
@@ -129,6 +151,12 @@ mcap <- oh.cap(Tab = Dat_sub$Tab,Map = Dat_sub$Map,formula = "condition + Condit
                distfun = distfun,perms = 10000,sqrt = T)
 
 
+#Write the  dataset
+write.table(x = mcap$Map_cap,file = "../data_figures/data_Fig5F.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
 
 #Permanova
 Tab_bray <- distfun(t(Dat_sub$Tab))
@@ -142,6 +170,17 @@ p_perm <- chibi.permanova(mypermanova = mypermanova,
 p_perm <- p_perm$p + 
   scale_fill_manual(values = palette_variance) + xlab(label = "Term Model") +
   theme(legend.position = "none")
+
+
+#Print data used to compute permanova
+bray_tab <- Tab_bray %>% as.matrix %>%as.data.frame
+write.table(x =bray_tab,file = "../data_figures/data_S6C_dist.csv",
+            append = F,quote = F,sep = ",",row.names = T,col.names = T)
+
+
+write.table(x =Dat_sub$Map,file = "../data_figures/data_S6C_metadata.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
 
 
 
@@ -169,6 +208,9 @@ Dat_sub <- Dat_rar %>% subset.Dataset(subset = typebyTissue == "AgarPlant",drop 
 mcap <- oh.cap(Tab = Dat_sub$Tab,Map = Dat_sub$Map,formula = "condition + Condition(Rep)",
                distfun = distfun,perms = 10000,sqrt = T)
 
+#Write the  dataset
+write.table(x = mcap$Map_cap,file = "../data_figures/data_S6B.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
 
 #Permanova
 Tab_bray <- distfun(t(Dat_sub$Tab))
@@ -182,6 +224,17 @@ p_perm <- chibi.permanova(mypermanova = mypermanova,
 p_perm <- p_perm$p + 
   scale_fill_manual(values = palette_variance) + xlab(label = "Term Model") +
   theme(legend.position = "none")
+
+
+#Print data used to compute permanova
+bray_tab <- Tab_bray %>% as.matrix %>%as.data.frame
+write.table(x =bray_tab,file = "../data_figures/data_S6E_dist.csv",
+            append = F,quote = F,sep = ",",row.names = T,col.names = T)
+
+
+write.table(x =Dat_sub$Map,file = "../data_figures/data_S6E_metadata.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
 
 
 
@@ -206,6 +259,10 @@ Dat_sub <- Dat_rar %>% subset.Dataset(subset = typebyTissue == "Shoot",drop = T,
 mcap <- oh.cap(Tab = Dat_sub$Tab,Map = Dat_sub$Map,formula = "condition + Condition(Rep)",
                distfun = distfun,perms = 10000,sqrt = T)
 
+#Write the  dataset
+write.table(x = mcap$Map_cap,file = "../data_figures/data_S6A.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
 
 #Permanova
 Tab_bray <- distfun(t(Dat_sub$Tab))
@@ -219,6 +276,18 @@ p_perm <- chibi.permanova(mypermanova = mypermanova,
 p_perm <- p_perm$p + 
   scale_fill_manual(values = palette_variance) + xlab(label = "Term Model") +
   theme(legend.position = "none")
+
+#Print data used to compute permanova
+bray_tab <- Tab_bray %>% as.matrix %>%as.data.frame
+write.table(x =bray_tab,file = "../data_figures/data_S6D_dist.csv",
+            append = F,quote = F,sep = ",",row.names = T,col.names = T)
+
+
+write.table(x =Dat_sub$Map,file = "../data_figures/data_S6D_metadata.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
 
 #Root phosphate
 

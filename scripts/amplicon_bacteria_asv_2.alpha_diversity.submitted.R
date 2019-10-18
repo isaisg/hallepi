@@ -9,6 +9,7 @@ library(egg)
 #Set random seed
 set.seed(130816)
 
+#Done
 
 
 source('plotting_parameters_hallepi.R')
@@ -105,3 +106,9 @@ p <- chibi.boxplot(Map = Dat_sub$Map,facet_formula = "Fraction",x_val = "Genotyp
              color = color_vline) +
   theme(legend.position = "none")
 oh.save.pdf(p = p,outname = "supfigure2_bacteria_asv_alphadiversity_extended.pdf",outdir = "../figures")
+
+
+#Write down the data table
+write.table(x = Dat_sub$Map,file = "../data_figures/data_Fig2A_S2A.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+

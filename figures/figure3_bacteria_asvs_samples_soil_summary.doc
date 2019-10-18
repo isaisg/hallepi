@@ -1,0 +1,28 @@
+Permutation test for capscale under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 10000
+
+Model: vegan::capscale(formula = t(Tab) ~ Genotype + Phosphate + Condition(Plot), data = Map, sqrt.dist = TRUE, dfun = distfun)
+          Df SumOfSqs      F Pr(>F)
+Genotype   2  0.56524 1.0219 0.4680
+Phosphate  1  0.39015 1.4107 0.2174
+Residual   6  1.65939              
+
+Call:
+adonis(formula = Tab_bray ~ Genotype + Phosphate + Genotype:Phosphate +      Plot, data = Dat_sub$Map, permutations = 10000) 
+
+Permutation: free
+Number of permutations: 10000
+
+Terms added sequentially (first to last)
+
+                   Df SumsOfSqs MeanSqs F.Model      R2  Pr(>F)  
+Genotype            2    0.3918 0.19588 0.82288 0.06413 0.62424  
+Phosphate           3    1.1010 0.36701 1.54179 0.18024 0.15258  
+Plot                9    3.5698 0.39664 1.66629 0.58440 0.09199 .
+Genotype:Phosphate  3    0.3318 0.11060 0.46463 0.05432 0.97740  
+Residuals           3    0.7141 0.23804         0.11691          
+Total              20    6.1085                 1.00000          
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

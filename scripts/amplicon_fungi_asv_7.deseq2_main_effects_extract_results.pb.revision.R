@@ -2,7 +2,6 @@ library(ohchibi)
 library(DESeq2)
 
 set.seed(seed = 130816)
-setwd('/home/isai/Documents/results/hallepi/revision_plosbiology/scripts/')
 
 ##Read
 df_tax <- readRDS(file = "../cleandata/dat_hallepi_amplicon_fungi_asvs_soil.2019.RDS") %$%

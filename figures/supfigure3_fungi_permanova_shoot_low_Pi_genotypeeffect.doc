@@ -1,0 +1,16 @@
+
+Call:
+adonis(formula = Tab_bray ~ Genotype + Plot, data = Dat_sub$Map,      permutations = 10000) 
+
+Permutation: free
+Number of permutations: 10000
+
+Terms added sequentially (first to last)
+
+          Df SumsOfSqs MeanSqs F.Model      R2  Pr(>F)  
+Genotype   2    0.9631 0.48154  1.5610 0.26786 0.05449 .
+Plot       4    1.3985 0.34962  1.1334 0.38896 0.28797  
+Residuals  4    1.2339 0.30848         0.34319          
+Total     10    3.5955                 1.00000          
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

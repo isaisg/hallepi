@@ -1,0 +1,15 @@
+
+Mantel statistic based on Pearson's product-moment correlation 
+
+Call:
+mantel(xdis = dist_root, ydis = dist_soil, permutations = 10000) 
+
+Mantel statistic r: 0.122 
+      Significance: 0.10979 
+
+Upper quantiles of permutations (null model):
+  90%   95% 97.5%   99% 
+0.127 0.168 0.199 0.245 
+Permutation: free
+Number of permutations: 10000
+

@@ -1,6 +1,8 @@
 library(ohchibi)
 library(palettesPM)
 
+#Done
+
 pval_thres <- 0.1
 res <- read.table(file = "../cleandata/df_dds_res_amplicon_bacteria_asv_fraction_asvlevel.tsv",
                   header = T,sep = "\t",quote = "",comment.char = "")
@@ -134,5 +136,8 @@ p <- ggplot(data = df_all,mapping = aes(Mode,y = Freq,fill = Phylum)) +
   scale_y_continuous(breaks = c(0,100,200,300,400,500,600,700))
 oh.save.pdf(p = p, outdir = "../figures/",outname = "figure2_bacteria_asv_phylogram_fraction_enrichments_depletions_count.pdf")
 
+#Write this dataset
+write.table(x = df_all,file = "../data_figures/data_Fig2C_enrichment.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
 
 

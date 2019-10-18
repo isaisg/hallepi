@@ -5,6 +5,8 @@ library(paletteer)
 #Set random seed
 set.seed(130816)
 
+#Done
+
 
 source('plotting_parameters_hallepi.R')
 
@@ -105,12 +107,27 @@ p_alone <- temp %>% subset(variable == "Regulon") %>% droplevels %>%
                 size_point = 0,size_median = size_median) +
   theme_hallepi_boxplot + 
   geom_sina(alpha = 0.15, color = median_color,stroke = 0.5,size = 6) +  scale_size(range=c(3,6)) + 
-  ylab("z-score") + theme(legend.position = "none") +
-  geom_vline(xintercept = c(1.5,2.5,3.5),size = size_vline, color = color_vline)
+  ylab("z-score") + theme(legend.position = "none") 
 saveRDS(object = p_alone,file = "../cleandata/fig1_zscore_193_col0.RDS")
+
+
+#Save data
+write.table(x = merged,file = "../data_figures/data_Fig1C.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
+
+
 #Correlation 
 df_cor <- dcast(data = merged,fun.aggregate = mean,
                 value.var = "value",Phosphate ~ variable) 
+
+#Save dataset
+
+write.table(x = df_cor,file = "../data_figures/data_S1F.csv",
+            append = F,quote = F,sep = ",",row.names = F,col.names = T)
+
+
 
 #Taken from 
 #https://stackoverflow.com/questions/7549694/adding-regression-line-equation-and-r2-on-graph
